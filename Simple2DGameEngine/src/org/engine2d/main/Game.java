@@ -2,14 +2,19 @@ package org.engine2d.main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Game extends JPanel implements Runnable{
 
-	public static final int GAME_WIDTH = 500, GAME_HEIGHT = 500;
+	public static Dimension SCREENSIZE = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final int GAME_WIDTH = SCREENSIZE.width/2, GAME_HEIGHT = SCREENSIZE.height/2;
 	public static final String GAME_NAME = "";
+	
+	private static KeyInput keyInput = new KeyInput();
 	
 	private Thread gameThread;
 	
@@ -18,6 +23,7 @@ public class Game extends JPanel implements Runnable{
 	public Game() {
 		this.setDoubleBuffered(true);
 		this.setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
+		this.addKeyListener(keyInput);
 
 		initGameFrame();
 		start();
