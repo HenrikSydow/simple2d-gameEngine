@@ -14,6 +14,8 @@ public class Game extends JPanel implements Runnable{
 	public static final int GAME_WIDTH = SCREENSIZE.width/2, GAME_HEIGHT = SCREENSIZE.height/2;
 	public static final String GAME_NAME = "";
 	
+	public static GameObjectHandler gameObjectHandler = new GameObjectHandler();
+	
 	private static KeyInput keyInput = new KeyInput();
 	
 	private Thread gameThread;
@@ -49,14 +51,15 @@ public class Game extends JPanel implements Runnable{
 		}
 	}
 	
-	// updates the game-object:
+	// updates the game:
 	private void update() {
-		
+		gameObjectHandler.update();
 	}
 	
-	// renders / paints when triggered by the repaint()-method:
+	// renders / paints the game when triggered by the repaint()-method:
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		gameObjectHandler.render(g);
 	}
 	
 	// starts the gameloop:
